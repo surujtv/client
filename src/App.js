@@ -1,24 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import './components/style.css'
+import { Create } from './components/Create';
+import { Home } from './components/Home';
+import { Toaster } from 'react-hot-toast';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { Update } from './components/Update';
 
 function App() {
+  const route = createBrowserRouter([
+    {
+      path: '/',
+      element: <Home/>
+    },
+    {
+      path: '/create',
+      element: <Create/>
+    },
+    {
+      path: '/update/:id',
+      element: <Update/>
+    }
+  ])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <RouterProvider router={route}></RouterProvider>
+      <Toaster />
+    </>
   );
 }
 
